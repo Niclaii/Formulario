@@ -1,10 +1,30 @@
 <!DOCTYPE html>
+<form onsubmit="guardarYRedirigir(); return false;">
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function guardarYRedirigir() {
+            // Guardar datos en localStorage
+            localStorage.setItem('nombre', document.getElementById('nombre').value);
+            localStorage.setItem('fecha_nacimiento', document.getElementById('fecha_nacimiento').value);
+            localStorage.setItem('ocupacion', document.getElementById('ocupacion').value);
+            localStorage.setItem('contacto', document.getElementById('contacto').value);
+            localStorage.setItem('nacionalidad', document.getElementById('nacionalidad').value);
+            localStorage.setItem('nivel_ingles', document.querySelector('input[name="nivel_ingles"]:checked').value);
+            localStorage.setItem('lenguajes', Array.from(document.getElementById('lenguajes').selectedOptions).map(option => option.value).join(', '));
+            localStorage.setItem('aptitudes', document.getElementById('aptitudes').value);
+            localStorage.setItem('habilidades', Array.from(document.querySelectorAll('input[name="habilidades[]"]:checked')).map(checkbox => checkbox.value).join(', '));
+            localStorage.setItem('perfil', document.getElementById('perfil').value);
+    
+            // Redirigir al usuario a perfil.html
+            window.location.href = 'perfil.html';
+        }
+    </script>
+    
 </head>
 <body>
     <div class="form-container">
@@ -33,9 +53,9 @@
             <div class="input-group">
                 <label for="nacionalidad">Nacionalidad:</label>
                 <select name="nacionalidad" id="nacionalidad">
-                    <option value="peruana">Peruana</option>
-                    <option value="argentina">Argentina</option>
-                  
+                    <option value="española">Española</option>
+                    <option value="mexicana">Mexicana</option>
+        
                 </select>
             </div>
             
@@ -52,7 +72,7 @@
                 <select name="lenguajes[]" id="lenguajes" multiple>
                     <option value="python">Python</option>
                     <option value="javascript">JavaScript</option>
-                 
+                  
                 </select>
             </div>
             
@@ -62,7 +82,7 @@
                 <datalist id="aptitudes_list">
                     <option value="Liderazgo">
                     <option value="Trabajo en equipo">
-               
+                    
                 </datalist>
             </div>
             
@@ -70,7 +90,7 @@
                 <label>Habilidades:</label>
                 <input type="checkbox" name="habilidades[]" value="comunicacion"> Comunicación
                 <input type="checkbox" name="habilidades[]" value="analisis"> Análisis
-  
+
             </div>
             
             <div class="input-group">
